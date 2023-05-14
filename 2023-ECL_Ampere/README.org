@@ -1,0 +1,12 @@
+#+title: Seminaire École Centrale de Lyon/Laboratoire Ampère
+
+* Security of distributed Model Predictive Control under False Data Injection
+The union of computing devices and physical systems gives origin to what we call cyber-physical systems.
+Those cyber-physical systems are essential for our everyday lives, be it for electricity and water distribution, traffic management, or even controlling the temperature of our houses.
+Since those systems have technical constraints and associated comfort and cost objectives, a solution is to use Model Predictive Control (MPC).
+However, depending on the scale or for privacy reasons, the computation may need to be divided into multiple computing devices, creating sub-systems, which in turn need to communicate to find a consensus on how to share common resources.
+This communication is vital to achieving consensus. Nonetheless, an attacker can exploit the exchange to influence the negotiation to benefit a select group of agents.
+In this presentation, we first review the main ways to decompose the MPC while sharing a common resource.
+Then, we present how an agent can influence the negotiation.
+Finally, we present a method to mitigate based on the resource scarcity of each agent.
+The proposed methods are illustrated through academic simulations of a small district heating network.
