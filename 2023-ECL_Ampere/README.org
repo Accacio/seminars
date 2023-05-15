@@ -1,5 +1,17 @@
 #+title: Seminaire École Centrale de Lyon/Laboratoire Ampère
 
+
+* Sécurité de la Commande Prédictive distribuée sous injection de données faussées
+L'union entre des dispositifs informatiques et systèmes physiques origine ce qu'on appelle les systèmes cyber-physiques.
+Les systèmes cyber-physiques sont essentiels à notre quotidien, soit dans la distribution d'électricité ou de l'eau, la gestion du trafic, ou même le contrôle de la température de nos maisons.
+Une fois que ces systèmes ont des contraintes techniques et des différents objectifs de confort et coût, une solution est d'utiliser la commande prédictive (MPC).
+Pourtant, dépendant de l'échelle des systèmes ou pour des raisons de confidentialité, la computation peut être divisée en plusieurs dispositifs, en découpant le système en sous-systèmes, qui doivent communiquer entre eux pour trouver un consensus de comment partager des ressources en commun.
+Cette communication est vitale pour atteindre le consensus. Cependant, un attaquant peut exploiter l'échange afin d'influencer la négociation pour bénéficier un sélect groupe d'agents.
+Dans cette présentation, on révise les principales manières de décomposer la MPC en partagent une ressource commune.
+Après, on présente comment un agent peut influencer la négociation.
+Et finalement, on présente des méthodes pour mitiger les attaques en se basant à la rareté de ressources de chaque agent.
+Les méthodes proposées sont illustrées à travers des simulations d'un petit réseau de distribution de chaleur.
+
 * Security of distributed Model Predictive Control under False Data Injection
 The union of computing devices and physical systems gives origin to what we call cyber-physical systems.
 Those cyber-physical systems are essential for our everyday lives, be it for electricity and water distribution, traffic management, or even controlling the temperature of our houses.
