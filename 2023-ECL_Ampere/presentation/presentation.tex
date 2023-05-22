@@ -413,8 +413,8 @@
 Usually based on optimization decomposition methods\footnote{\articlesymbol~\cite{BoydEtAl2015}}:
 
 \begin{itemize}[<+(1)->]
-  \item \alert<.(3)-.(5)>{Local problems with auxiliary variables}
-  \item \alert<.(5)-.(6)>{Update auxiliary variables}
+  \item \alert<.(3)-.(5)|handout:0>{Local problems with auxiliary variables}
+  \item \alert<.(5)-.(6)|handout:0>{Update auxiliary variables}
 \end{itemize}
 \onslide<+(1)->{Basically 2 choices\footnote<.(1)->{Other approaches, but similar concepts}:}
   \begin{itemize}[<+(1)->]
@@ -608,19 +608,19 @@ let \p1=(\tikztostart), \p2=(\tikztotarget), \n1={veclen(\y2-\y1,\x2-\x1)} in
         coordinator/.style={fill=mpc_coordinator, minimum height=0.6180*3cm, minimum width=6cm},
         ]
 
-        \visible<1>{
+        \visible<1|handout:1>{
           % \node[ mpcSmall,fill=none] (block1) {\small MPC 1};
           \node[mpcSmall, draw, minimum width=6cm,right=-1cm] (mult) {\small MPC};
           \node[mpcSmall, fill=none, right=of mult,] (blockM) {\small MPC M};
         }
-        \visible<2->{
+        \visible<2-|handout:2->{
           \node[draw, mpcSmall] (block1) {\small MPC 1};
           \node[fill=none, draw=none, right=of block1,] (mult) {\bf $\dots$};
           \node[draw, mpcSmall, fill=mpc_agent, right=of mult,] (blockM) {\small MPC M};
         }
-        \onslide<3->{\node[draw, coordinator, below=of mult,] (coordinator) {Coordinator};}
+        \onslide<3-|handout:3->{\node[draw, coordinator, below=of mult,] (coordinator) {Coordinator};}
 
-        \onslide<6->{
+        \onslide<6-|handout:6->{
           \draw[-latex,line width=1pt] (block1.south)+(0.4,.0) -- ( coordinator.north -| {$(block1.south)+(0.4,.0)$}) node [right,midway] {};
           \draw[latex-,line width=1pt] (block1.south)+(-0.4,0) -- (  coordinator.north -| {$(block1.south)+(-0.4,0)$}) node [left,midway] {};
           \draw[-latex,line width=1pt] (blockM.south)+(0.4,.0) -- ( coordinator.north -| {$(blockM.south)+(0.4,.0)$}) node [right,midway] {};
@@ -631,13 +631,14 @@ let \p1=(\tikztostart), \p2=(\tikztotarget), \n1={veclen(\y2-\y1,\x2-\x1)} in
   \end{minipage}
   \hfill
   \begin{minipage}[c]{.5\linewidth}
-    \begin{itemize}[<+(2)->]
-      \item Coordinator \only<.(4)->{$\to$ Hierarchical}
-            \begin{itemize}[<+(2)->]
+    \begin{itemize}[<+(2)-|handout:+(2)->]
+      \item Coordinator \only<.(4)-|handout:.(4)->{$\to$ Hierarchical}
+            \begin{itemize}[<+(2)-|handout:+(2)->]
               \item Enforce global constraints
             \end{itemize}
-      \item<+(3)-> Bidirectional
-      \item<+(3)-> No delay $\to$ Synchronous
+      \item<+(3)-|handout:+(3)-> Bidirectional
+      \item<+(3)-|handout:+(3)-> No delay $\to$ Synchronous
+      \item<+(3)-|handout:+(3)-> But what to send?
     \end{itemize}
     \vspace{.5cm}
     \centering
@@ -658,22 +659,22 @@ let \p1=(\tikztostart), \p2=(\tikztotarget), \n1={veclen(\y2-\y1,\x2-\x1)} in
           selected/.style={fill=supelecRed!90, text=white}
           ]
 
-          \node[terminal, alt=<{2}>{selected}] (block1) {Start};
+          \node[terminal, alt=<{2}|handout:{2}>{selected}] (block1) {Start};
 
-          \node[action, alt=<{3}>{selected},below=of block1,] (block7) { Coordinator sends \\$\vec{\theta}_i^{(h)}$};
+          \node[action, alt=<{3}|handout:{3}>{selected},below=of block1,] (block7) { Coordinator sends \\$\vec{\theta}_i^{(h)}$};
 
-          \node[action, alt=<{4}>{selected}, below=of block7,] (block8) { Agents send \\$\vec{\lambda}_i(\vec{\theta}_{i}^{(h)})$};
+          \node[action, alt=<{4}|handout:{4}>{selected}, below=of block7,] (block8) { Agents send \\$\vec{\lambda}_i(\vec{\theta}_{i}^{(h)})$};
 
-          \node[action, alt=<{5}>{selected}, below=of block8,
+          \node[action, alt=<{5}|handout:{5}>{selected}, below=of block8,
           ] (block9) { Coordinator updates \\allocation};
 
-          \node[condition, alt=<{6}>{selected}, below=of block9] (block10) { Negotiation\\ converges?};
+          \node[condition, alt=<{6}|handout:{6}>{selected}, below=of block9] (block10) { Negotiation\\ converges?};
 
           \node[draw,
           rounded rectangle,
           below=of block10,
           fill=gray!90!black!50,
-          alt=<{7}>{selected},
+          alt=<{7}|handout:{7}>{selected},
           ] (block11) { Apply first control};
 
           \draw[-latex] (block7) edge (block8) (block1) edge (block7) (block8) edge (block9) (block9) edge (block10);
@@ -688,7 +689,7 @@ let \p1=(\tikztostart), \p2=(\tikztotarget), \n1={veclen(\y2-\y1,\x2-\x1)} in
       % \caption{Quantity decomposition based DMPC}\label{fig:quantityDecompDMPC}
     \end{figure}
   \end{minipage}
-  \only<2->{\begin{minipage}{.45\linewidth}
+  \only<2-|handout:2->{\begin{minipage}{.45\linewidth}
       \begin{figure}
         \centering
         \begin{tikzpicture}[balloon/.style={
