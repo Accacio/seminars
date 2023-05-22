@@ -904,7 +904,7 @@ let \p1=(\tikztostart), \p2=(\tikztotarget), \n1={veclen(\y2-\y1,\x2-\x1)} in
           \node[draw, mpcSmall, fill=mpc_agent, right=of mult,] (blockM) {\small MPC M};
           \node[draw, coordinator, below=of mult,] (coordinator) {Coordinator};
 
-          \only<-2>{\draw[-latex,line width=1pt] (block1.south)+(0.4,.0) -- ( coordinator.north -| {$(block1.south)+(0.4,.0)$}) node (lambda1) [right,midway] {$\alert<2>{\lambda_{1}}$};}
+          \only<-2|handout:0>{\draw[-latex,line width=1pt] (block1.south)+(0.4,.0) -- ( coordinator.north -| {$(block1.south)+(0.4,.0)$}) node (lambda1) [right,midway] {$\alert<2>{\lambda_{1}}$};}
           \only<3->{\draw[-latex,line width=1pt] (block1.south)+(0.4,.0) -- ( coordinator.north -| {$(block1.south)+(0.4,.0)$}) node (lambda1) [right,midway] {$\alert<3->{\tilde{\lambda}_{1}}$};}
           % \only<3->{\node[draw, mpcSmall,] (block1) {};}
           \only<2->{\node[draw,minimum height=0.6180*1.75cm, minimum width=1.75cm,path picture={\node at (path picture bounding box.center) {\includegraphics[height=1.5cm]{dick_dastardly.jpg}};}] at ($(lambda1)+(1.2,0)$) {};}
