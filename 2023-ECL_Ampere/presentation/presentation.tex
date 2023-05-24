@@ -99,7 +99,7 @@
   \begin{minipage}[c]{.7\linewidth}
     \begin{itemize}
       \item[] Postdoctoral researcher at LAAS/CNRS
-      \item[] \textit{Garanteed relative localisation and anticollision scenario for autonomous vehicles}
+      \item[] \textit{Guaranteed relative localization and anti collision scenario for autonomous vehicles}
       \item[] Project AutOCampus (GIS neOCampus)
       \item[] Advised by Soheib Fergani
     \end{itemize}
@@ -149,6 +149,10 @@
       \item[] Doctoral Thesis at CentraleSupélec/IETR
       \item[] \textit{Security of dMPC under False Data Injection}
       \item[] Advised by Hervé Guéguen and Romain Bourdais
+    \end{itemize}
+    \begin{itemize}
+      \item[] CS-Rennes  (Expertise in MPC for Smart Buildings)
+      \item[] Brittany Region Interest (Cybersecurity)
     \end{itemize}
   \end{minipage}
   \hfill
@@ -336,11 +340,8 @@
   \onslide<+(1)->{
     Security in dMPC context is relatively new\footnote<.(1)->{<30 documents in scopus} (First article from 2017\footnote<.(1)->{\cite{VelardeEtAl2017b}})
   }
-  \begin{itemize}[<+(1)->]
-    \item CentraleSupélec Rennes - Expertise in MPC for Smart Buildings
-    \item Brittany Region (Sustainable Energy + cybersecurity)
-  \end{itemize}
-  \vspace{.05cm}
+
+  \vspace{.5cm}
   \onslide<+(1)->{\tikz\node[draw,rectangle,white,inner sep=5.5pt,text=black,fill=mpc_coordinator]{
       \vbox{
       \begin{itemize}
@@ -746,7 +747,8 @@ let \p1=(\tikztostart), \p2=(\tikztotarget), \n1={veclen(\y2-\y1,\x2-\x1)} in
       \item Allocation is updated\footnotemark \onslide<9->{\\(respect global constraint)}
     \end{enumerate}
   \end{minipage}
-  \footnotetext<.(1)->{It obfuscates system's parameters (+ Privacy)}
+  \addtocounter{footnote}{-1}%
+  \footnotetext<.(1)->{It obfuscates system's parameters (+ Privacy)}\addtocounter{footnote}{1}
   \footnotetext<.(2)->{Only equation to change to add/remove agents}
   \hfill
   \begin{minipage}[c]{.45\linewidth}
@@ -1016,7 +1018,7 @@ let \p1=(\tikztostart), \p2=(\tikztotarget), \n1={veclen(\y2-\y1,\x2-\x1)} in
 \end{frame}
 
 \begin{frame}{}
-  \begin{itemize}[<+(1)->]
+  \begin{itemize}[<+->]
     \item But can we mitigate these effects?
     \item Yes! (At least in some cases)
   \end{itemize}
@@ -2328,37 +2330,6 @@ let \p1=(\tikztostart), \p2=(\tikztotarget), \n1={veclen(\y2-\y1,\x2-\x1)} in
 %   }
 % \end{frame}
 
-
-\appendix
-
-\begin{frame}[plain]
-  \centering
-  \vfill
-  Questions? Comments?
-  \vfill
-  \begin{minipage}[t]{.45\linewidth}
-    \small
-    \centering
-    Repository
-    \href{https://github.com/Accacio/thesis}{https://github.com/Accacio/thesis}
-
-    \includegraphics[width=2cm]{qrRepo.png}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{.5\linewidth}
-    \small
-    \centering
-    Contact\\
-    \href{mailto:rafael.accacio.nogueira@gmail.com?subject=Seminar Lyon 2023}{rafael.accacio.nogueira@gmail.com}
-
-    \includegraphics[width=2cm]{qrContact.png}
-  \end{minipage}
-  \ifwebcast{\tikz{\draw[fill=pink,draw=pink] (1.5,0) circle [radius=1.5cm]}}%
-  \fi
-      \script{If you want to see the simulations of this paper we have a github repository, and if you want to send me an email about this paper or this presentation you can flash the QR code in the right. Thank you!\\}
-
-\end{frame}
-
 \begin{frame}[allowframebreaks]
 % \bibliographystyle{apalike}
 % \bibliography{../../bibliography}
@@ -2392,6 +2363,37 @@ let \p1=(\tikztostart), \p2=(\tikztotarget), \n1={veclen(\y2-\y1,\x2-\x1)} in
 
 %     \script{As a recommended reading I give a book about distributed MPC and an article with another secure dmpc algorithm based in another decomposition method. That's all\\}
 \end{frame}
+
+\appendix
+
+\begin{frame}[plain]
+  \centering
+  \vfill
+  Questions? Comments?
+  \vfill
+  \begin{minipage}[t]{.45\linewidth}
+    \small
+    \centering
+    Repository
+    \href{https://github.com/Accacio/thesis}{https://github.com/Accacio/thesis}
+
+    \includegraphics[width=2cm]{qrRepo.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.5\linewidth}
+    \small
+    \centering
+    Contact\\
+    \href{mailto:rafael.accacio.nogueira@gmail.com?subject=Seminar Lyon 2023}{rafael.accacio.nogueira@gmail.com}
+
+    \includegraphics[width=2cm]{qrContact.png}
+  \end{minipage}
+  \ifwebcast{\tikz{\draw[fill=pink,draw=pink] (1.5,0) circle [radius=1.5cm]}}%
+  \fi
+      \script{If you want to see the simulations of this paper we have a github repository, and if you want to send me an email about this paper or this presentation you can flash the QR code in the right. Thank you!\\}
+
+\end{frame}
+
 
 \begin{frame}{Conditions}{\hyperlink{analysis_deprived_systems}{\beamerreturnbutton{back}}}
   \hypertarget{condition_transform_equality}{}
