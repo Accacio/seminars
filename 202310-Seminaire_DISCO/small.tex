@@ -1,0 +1,95 @@
+\documentclass[aspectratio=169]{neocampus}
+\usepackage[style=authortitle]{biblatex}
+\addbibresource{../../bibliography.bib}
+
+\title{Localisation relative \\ de robots mobiles}
+\author{Rafael Accácio NOGUEIRA\\
+Soheib FERGANI\\ \texttt{\{ranogueira, sfergani\} \\at laas.fr}}
+
+\def\day{7}
+\def\month{10}
+\def\year{2023}
+
+\input{math.tex}
+
+\usetikzlibrary{positioning,hobby,calc,arrows,overlay-beamer-styles}
+\usetikzlibrary{spy,shadows,shapes.symbols,shapes.geometric}
+\usetikzlibrary{decorations.pathreplacing,intersections}
+\tikzset{%
+  show curve controls/.style={
+    postaction={
+      decoration={
+        show path construction,
+        curveto code={
+        %   \draw [blue]
+        %     (\tikzinputsegmentfirst) -- (\tikzinputsegmentsupporta)
+        %     (\tikzinputsegmentlast) -- (\tikzinputsegmentsupportb);
+          \fill [red, opacity=0.5]
+            (\tikzinputsegmentsupporta) circle [radius=.5ex]
+            (\tikzinputsegmentsupportb) circle [radius=.5ex];
+        }
+      },
+      decorate
+}}}
+
+\begin{document}
+
+\begin{frame}{Approximation par ensembles connus}
+  \centering
+  \begin{overlayarea}{\textwidth}{.25\paperheight}
+    \begin{itemize}
+      \item<+(1)-> Compromis entre complexité de calcul et conservatisme
+            \begin{itemize}
+              \item<+(1)-> Rapide mais conservative: {\color<3>{green!50!white}{intervalles}}, {\color<4>{blue!50!white}{ellipsoïdes}}, {\color<5>{olive!50!white}{zonotopes}}
+              \item<+(3)-> Lent mais serré (normalement hors-ligne): \alert<6>{sous-pavage (SIVIA)}, {\color<7>{neocampus_yellow}{polytopes}}
+            \end{itemize}
+      \item<+(4)-> Zonotope Contraint\only<.(4)->{\footnote{\cite{ScottEtAl2016} (\citeyear{ScottEtAl2016})} }(une autre representation de polytopes)
+    \end{itemize}
+  \end{overlayarea}
+
+  \vfill
+  \begin{overlayarea}{\textwidth}{.3\paperheight}
+    \begin{minipage}[c]{.45\linewidth}
+      \scalebox{3}{
+        \begin{tikzpicture}
+          % \draw [help lines] (-1,-1) grid [step=.1cm] (1,1);
+          \node[] (car_purple_position) {};
+
+          % interval
+          \onslide<3->{
+            \draw[green!50!white,fill=green!50!white,alt=<4->{opacity=0.2}] (-0.65,-0.33) rectangle ++(1.15,.73);
+          }
+
+          % ellipse
+          \onslide<4->{
+            \draw[rotate=20,blue!50!white,fill=blue!50!white,alt=<5->{opacity=0.2}] ($(car_purple_position)+(-0.075,0)$) ellipse (.7cm and .44cm);
+          }
+
+          % zonotope
+          \onslide<5->{
+            \def\s{0.42}
+            \def\a{0.88}
+            \draw[olive!50!white,fill=olive!50!white,xshift=-0.71cm,yshift=0.04cm,alt=<6->{opacity=0.2}] (0,0) -- ++(60:\s) -- ++(0:\a) --++(-60:\s) -- ++(240:\s) --++(180:\a) -- ++(120:\s);
+          }
+
+          % constrained zonotope/ polytope
+          \onslide<7->{
+            \draw[neocampus_yellow,fill=neocampus_yellow] (-0.65,-0.1) -- ++(90:0.2) -- ++(45:0.42) --++(0:0.4) -- ++(-30:0.53) -- ++(-90:0.32) -- ++(210:0.28) --++(180:0.45) --++(160:0.49) -- cycle;
+          }
+
+          \path[draw,use Hobby shortcut,closed=true,violet!50!white,fill=violet!50!white]
+          ($(car_purple_position)+(.5,0)$) .. ++(-.3,.3) .. ++(-.1,.05) .. ++(-0.6,-0.1) ..++(-0.1,-0.4) ..++(0.2,-0.1);
+          \node[] (car_purple) at (car_purple_position) {\includegraphics[height=1cm,angle=90]{car_purple}};
+
+        \end{tikzpicture}
+      }
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{.45\linewidth}
+      \visible<6->{
+        \includegraphics[trim={100 20 50 4},clip,width=.6\textwidth]{sivia}
+      }
+    \end{minipage}
+  \end{overlayarea}
+\end{frame}
+\end{document}
