@@ -5,6 +5,7 @@
 \RequirePackage{calc}
 \graphicspath{{fig/}{img/}}
 
+\RequirePackage[x11names]{xcolor}
 \RequirePackage{tikz}
 \usetikzlibrary{babel}
 
@@ -55,7 +56,7 @@
   \usefonttheme[onlymath]{serif}
 %
 
-  \setbeamercolor{alert}{bg=auditionPrimary}
+  \setbeamercolor{alerted text}{fg=auditionPrimary}
   \setbeamercolor{palette primary}{bg=auditionPrimary,fg=auditionBlack}
   \setbeamercolor{palette secondary}{bg=auditionBlack}
   \setbeamercolor{palette tertiary}{bg=auditionGray}
