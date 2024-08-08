@@ -243,17 +243,27 @@ Et si le Builder était un robot?\pause
 
 \end{frame}
 
-\begin{frame}{Filtered Tasks}
+\subsection{Tâches}
+\begin{frame}{Tâches}
+  \vfill
+  \pause
+  ``Put a blue block on your left''
+
+  \vfill
+  \begin{description}[<+(1)->]
+    \item[Filtered Task] possible tâche complexe (\texttt{PUT(left,blue)})
+    \item[Task] Une tâche assez simple (\texttt{TURN(LEFT)}, \texttt{PUT(blue)}, \texttt{TURN(RIGHT)})
+    \item[Commands] Action faite par Builder (\texttt{turn}, \texttt{setPitch}, \texttt{place})
+  \end{description}
 \end{frame}
 
-\subsection{Examples de Tâches}
 
 \section{Tâches réalisées}
 \begin{frame}{État}
-Stage Ismail
+
 \begin{itemize}
-  \item Enregistrement de l'état en fichiers \texttt{.json}
-  \item Replay de l'enregistrement (Overworld)
+  \item Stage Ismail (\texttt{.json} + replay)
+  \item Docker Image
 \end{itemize}
 \end{frame}
 
