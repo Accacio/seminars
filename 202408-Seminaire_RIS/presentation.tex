@@ -103,13 +103,14 @@
 \end{itemize}
 \pause
 ~\\
-Mais quel méthode
+\centering
+Mais quelle activité/outils pour tester?
 \end{frame}
 
 \begin{frame}{Collaborative Dialogue}
 {\small \cite{Narayan-ChenEtAl2019}}
 \centering
-\onslide<2->{\scalebox{0.8}{\begin{tikzpicture}
+\onslide<2->{\scalebox{0.7}{\begin{tikzpicture}
 \node[inner sep=0cm] (image) {\includegraphics[width=.7\linewidth]{Narayan-ChenEtAl2019.png}};
 \only<-3>{\node[fill,white,rectangle,anchor=east,minimum width=.352\linewidth,minimum height=5.55cm] at (image.east) {};}
 \only<-2>{\node[fill,white,rectangle,anchor=south west,minimum width=.35\linewidth,minimum height=3cm] at (image.south west) {};}
@@ -118,21 +119,27 @@ Mais quel méthode
 
 \addtocounter{beamerpauses}{3}
 \pause
-Collection des Dialogues\footnote<.(1)->{Minecraft Dialogue Corpus \tikz \node[baseline={(github.base)},outer sep=0pt,inner sep=0pt] (github) {\includegraphics[width=1em]{GitHub-Mark-32px.png}};} \pause\textrightarrow{} Génération d'énontiations\pause\ (Architect est un robot)
+Collection des Dialogues\footnote<.(1)->{Minecraft Dialogue Corpus \raisebox{-.5ex}{\includegraphics[width=1em]{GitHub-Mark-32px.png}}} \pause\textrightarrow{} Génération d'énontiations\pause\ (Architect est un robot)
 
 \pause
 ~\\
-Et si le Builder était un robot?
+Et si le Builder était un robot?\pause
+\\
+\small \citeauthor{JayannavarEtAl2020}~\citeyear{JayannavarEtAl2020} (Pas de raisonnement spatial)
 \end{frame}
 
 \begin{frame}{Travail}
-  \centering
-  \vfill
-  Établir l'architecture pour créer une preuve de concept
 
   \vfill
+  Établir l'architecture pour créer une preuve de concept\pause\ qui associe
+  \begin{itemize}
+    \item Traitement automatique des langues (NLP)
+    \item Overworld
+  \end{itemize}
+
+
   % \tableofcontents
-  \onslide<2->{\tableofcontents[subsectionstyle=hide/hide/hide]}
+  \onslide<+(1)->{\tableofcontents[subsectionstyle=hide/hide/hide]}
 
 \end{frame}
 
@@ -204,16 +211,49 @@ Et si le Builder était un robot?
 \end{frame}
 
 \subsection{Flux de données}
+
+\begin{frame}{Flux de données}
+
+  \vfill
+  \begin{itemize}
+    \item Malmö API \only<2->{(\texttt{json})}
+          \begin{itemize}[<.(2)->]
+            \item Stats
+            \item Chat
+            \item Grid Observations
+            \item Commands
+          \end{itemize}
+    \item ROS
+          \begin{itemize}[<.(3)->]
+            \item Chat (\texttt{StampedString})
+            \item Filtered Tasks (\texttt{StampedString})
+            \item Tasks (\texttt{StampedString})
+            \item Positions agents/blocs \textrightarrow\ Overworld (\texttt{*Poses})
+          \end{itemize}
+    \item Ontologenius
+          \begin{itemize}[<.(4)->]
+            \item Positions des agents/blocs \tikzmark{a}
+            \item Couleurs des blocs \tikzmark{ab}
+          \end{itemize}
+  \end{itemize}
+      \onslide<4->{\begin{tikzpicture}[overlay, remember picture,decoration={brace,amplitude=2pt}]
+      \draw[decorate,thick] (a.north east) -- (a.north east |- ab.south east) node[midway, right=0.1cm,text=black,text width = 2in] {Inheritance\\ ObjectProperty};
+    \end{tikzpicture}
+  }
+
+\end{frame}
+
 \begin{frame}{Filtered Tasks}
 \end{frame}
 
+\subsection{Examples de Tâches}
 
 \section{Tâches réalisées}
 \begin{frame}{État}
 Stage Ismail
 \begin{itemize}
   \item Enregistrement de l'état en fichiers \texttt{.json}
-  \item Replay de l'état en créant
+  \item Replay de l'enregistrement (Overworld)
 \end{itemize}
 \end{frame}
 
