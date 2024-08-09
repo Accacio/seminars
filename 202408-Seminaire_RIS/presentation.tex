@@ -121,7 +121,7 @@ Mais quelle activité/outils pour tester?
 
 \addtocounter{beamerpauses}{3}
 \pause
-Collection des Dialogues\footnote<.(1)->{Minecraft Dialogue Corpus \raisebox{-.5ex}{\includegraphics[width=1em]{GitHub-Mark-32px.png}}} \pause\textrightarrow{} Génération d'énontiations\pause\ (Architect est un robot)
+Collection des Dialogues\footnote<.(1)->{Minecraft Dialogue Corpus \raisebox{-.5ex}{\includegraphics[width=1em]{github-mark.png}}} \pause\textrightarrow{} Génération d'énontiations\pause\ (Architect est un robot)
 
 \pause
 ~\\
@@ -145,7 +145,7 @@ Et si le Builder était un robot?\pause
 
 \end{frame}
 
-\section{Structure}
+\section{Reliant Minecraft/Overworld/NLP}
 
 \subsection{Architecture}
 \tikzset{image/.style={inner sep=0cm},rectangle/.style={},<->/.tip={latex[scale=2]}}
@@ -161,7 +161,7 @@ Et si le Builder était un robot?\pause
   \node[below=of architect] (architect_text) {\small Architect};
   \node[image,right=of architect] (builder) {\includegraphics[width=2cm]{builder.png}};
   \node[below=of builder] (builder_text) {\small Builder};
-  \onslide<2->{\node[below=of architect_text] (minecraft_text) {\Large Malmö\footnote<2->{\raisebox{-.5ex}{\includegraphics[width=1em]{microsoft.png}} Malmö 2017  (API pour l'apprentissage par renforcement) \raisebox{-.5ex}{\includegraphics[width=1em]{GitHub-Mark-32px.png}}}};}
+  \onslide<2->{\node[below=of architect_text] (minecraft_text) {\Large Malmö\footnote<2->{\raisebox{-.5ex}{\includegraphics[width=1em]{microsoft.png}} Malmö 2016  (API pour l'apprentissage par renforcement) \raisebox{-.5ex}{\includegraphics[width=1em]{github-mark.png}}}};}
   \node[inner sep=0cm,right=-.1cm of minecraft_text] {\includegraphics[clip,width=2cm,trim={1cm 30cm 0 25cm}]{minecraft_logo.png}};
 
   \coordinate (malmodouble) at ($(architect.west |- minecraft_text.south west) + (builder.north east)$);
@@ -288,13 +288,14 @@ Et si le Builder était un robot?\pause
   \vfill
 Point de départ: Stage Ismail (\texttt{.json})
   \vfill
-\begin{itemize}
+\begin{itemize}[<+(1)->]
   \item MàJ Malmö pour fonctionner sur Ubuntu 20.04
   \item Image docker
   \item Reproduction scénario de collecte (Malmö pur)
   \item Création de l'interface Malmö/ROS/Overworld
   \item Mock-up du «Dialog Manager» (regex FTW!)
   \item Mock-up du Planner
+  \item Documentation
 \end{itemize}
 \end{frame}
 
@@ -315,8 +316,8 @@ Point de départ: Stage Ismail (\texttt{.json})
     \small
     \centering
     Contact\\
-% qrencode mailto:rafael.accacio.nogueira@gmail.com?subject=Audition IMT-Atlantique 2024 -o qrContact.png
-    \href{mailto:rafael.accacio.nogueira@gmail.com?subject=Audition IMT-Atlantique 2024}{rafael.accacio.nogueira@gmail.com}
+% qrencode mailto:rafael.accacio.nogueira@gmail.com?subject=Seminaire RIS Minecraft -o qrContact.png
+    \href{mailto:rafael.accacio.nogueira@gmail.com?subject=Seminaire RIS Minecraft}{rafael.accacio.nogueira@gmail.com}
 
     \includegraphics[width=2cm]{qrContact.png}
   \end{minipage}
