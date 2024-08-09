@@ -1,5 +1,7 @@
 \documentclass[aspectratio=169]{audition-beamer}
 
+\renewcommand{\footnoterule}{}
+
 \usepackage[francais]{babel}
 \input{preamble}
 
@@ -134,7 +136,7 @@ Et si le Builder était un robot?\pause
   Établir l'architecture pour créer une preuve de concept\pause\ qui associe
   \begin{itemize}
     \item Traitement automatique des langues (NLP)
-    \item Overworld
+    \item Overworld/Ontologenius (Raisonnement spatial et bases de connaissances)
   \end{itemize}
 
 
@@ -159,7 +161,7 @@ Et si le Builder était un robot?\pause
   \node[below=of architect] (architect_text) {\small Architect};
   \node[image,right=of architect] (builder) {\includegraphics[width=2cm]{builder.png}};
   \node[below=of builder] (builder_text) {\small Builder};
-  \onslide<2->{\node[below=of architect_text] (minecraft_text) {\Large Malmö};}
+  \onslide<2->{\node[below=of architect_text] (minecraft_text) {\Large Malmö\footnote<2->{\raisebox{-.5ex}{\includegraphics[width=1em]{microsoft.png}} Malmö 2017  (API pour l'apprentissage par renforcement) \raisebox{-.5ex}{\includegraphics[width=1em]{GitHub-Mark-32px.png}}}};}
   \node[inner sep=0cm,right=-.1cm of minecraft_text] {\includegraphics[clip,width=2cm,trim={1cm 30cm 0 25cm}]{minecraft_logo.png}};
 
   \coordinate (malmodouble) at ($(architect.west |- minecraft_text.south west) + (builder.north east)$);
@@ -247,23 +249,53 @@ Et si le Builder était un robot?\pause
 \begin{frame}{Tâches}
   \vfill
   \pause
-  ``Put a blue block on your left''
+  Architect: ``Put a blue block on your left''
 
   \vfill
   \begin{description}[<+(1)->]
     \item[Filtered Task] possible tâche complexe (\texttt{PUT(left,blue)})
-    \item[Task] Une tâche assez simple (\texttt{TURN(LEFT)}, \texttt{PUT(blue)}, \texttt{TURN(RIGHT)})
+    \item[Task] liste de tâches (\texttt{TURN(LEFT)}, \texttt{PUT(blue)}, \texttt{TURN(RIGHT)}) \only<.(3)->{\alert{\textleftarrow} \stepcounter{beamerpauses}}
     \item[Commands] Action faite par Builder (\texttt{turn}, \texttt{setPitch}, \texttt{place})
   \end{description}
+
+  \vfill
+  \pause
+  Les tâches doivent
+  \begin{itemize}[<+(1)->]
+    \item être réactives (c-à-d, elles dépendent de l'état)
+    \item avoir liste de pré-conditions
+    \item avoir liste de post-conditions
+  \end{itemize}
+
+\end{frame}
+
+\subsection{Planificateur}
+\begin{frame}{Planificateur}{Partielment implementé }
+
+  \pause
+  Planificateur doit :
+  \begin{itemize}[<+(1)->]
+    \item[\only<8->{\checkmark}] avoir une bibliothèque de tâches
+    \item[] avoir une bibliothèque de conditions et tâches associées
+    \item[\only<8->{\checkmark}] avoir accès au raisonnement
+    \item[] avoir accès au raisonnement
+    \item[] tester si action est faisable
+  \end{itemize}
 \end{frame}
 
 
 \section{Tâches réalisées}
-\begin{frame}{État}
-
+\begin{frame}{Tâches réalisées}
+  \vfill
+Point de départ: Stage Ismail (\texttt{.json})
+  \vfill
 \begin{itemize}
-  \item Stage Ismail (\texttt{.json} + replay)
-  \item Docker Image
+  \item MàJ Malmö pour fonctionner sur Ubuntu 20.04
+  \item Image docker
+  \item Reproduction scénario de collecte (Malmö pur)
+  \item Création de l'interface Malmö/ROS/Overworld
+  \item Mock-up du «Dialog Manager» (regex FTW!)
+  \item Mock-up du Planner
 \end{itemize}
 \end{frame}
 
@@ -273,7 +305,7 @@ Et si le Builder était un robot?\pause
 
 \begin{frame}{Conclusion}
   \begin{itemize}
-    \item<+->
+    \item<+-> Blockworld reasoner
   \end{itemize}
 \end{frame}
 
