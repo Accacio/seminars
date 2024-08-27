@@ -148,7 +148,6 @@ Et si le Builder était un robot?\pause
 \section{Reliant Minecraft/Overworld/NLP}
 
 \subsection{Architecture}
-\tikzset{image/.style={inner sep=0cm},rectangle/.style={},<->/.tip={latex[scale=2]}}
 \begin{frame}{Architecture}
 
 \centering
@@ -201,13 +200,14 @@ Et si le Builder était un robot?\pause
   \draw[<-] (malmo_interface.10) -| (reasoner.230) node[above,sloped,near start] {Actions};
 }
 \onslide<9->{
-  \draw[->] (malmo_interface.40) |- (reasoner.200) node[above,sloped,near end] {World State};
+  \draw[->] (malmo_interface.40) |- (reasoner.205) node[above,sloped,near end] {World State};
 }
 \onslide<7->{
-  \draw[->] ([shift={(0cm,.4cm)}]dialog_manager.east) -- ([shift={(0cm,.4cm)}]reasoner.west) node[above,sloped,near end] {Filtered Tasks};}
+  \draw[->] ([shift={(0cm,.8cm)}]dialog_manager.east) -- ([shift={(0cm,.8cm)}]reasoner.west) node[above,sloped,near end] {Filtered Tasks};}
+\onslide<10->{
+  \draw[<-] ([shift={(0cm,0.2cm)}]dialog_manager.east) -- ([shift={(0cm,0.2cm)}]reasoner.west) node[above,yshift=-0.2em,sloped,near end] {World Updates};}
 \onslide<11->{
-  \draw[<-] ([shift={(0cm,-0.1cm)}]dialog_manager.east) -- ([shift={(0cm,-0.1cm)}]reasoner.west) node[above,sloped,near end] {Common Errors};}
-
+  \draw[<-] ([shift={(0cm,-0.4cm)}]dialog_manager.east) -- ([shift={(0cm,-0.4cm)}]reasoner.west) node[above,sloped,near end] {Common Errors};}
 \end{tikzpicture}
 }
 \end{frame}
@@ -247,14 +247,63 @@ Et si le Builder était un robot?\pause
 
 \subsection{Tâches}
 \begin{frame}{Tâches}
+\scalebox{.35}{
+\begin{tikzpicture}[node distance={.1cm and 1cm},remember picture,overlay,yshift=-8cm,xshift=33.5cm]
+  % MINECRAFT
+  \node[image] (architect) at (-1,0) {\includegraphics[width=2cm]{architect.png}};
+  \node[below=of architect] (architect_text) {\small Architect};
+  \node[image,right=of architect] (builder) {\includegraphics[width=2cm]{builder.png}};
+  \node[below=of builder] (builder_text) {\small Builder};
+  \node[below=of architect_text] (minecraft_text) {\Large Malmö};
+  \node[inner sep=0cm,right=-.1cm of minecraft_text] {\includegraphics[clip,width=2cm,trim={1cm 30cm 0 25cm}]{minecraft_logo.png}};
+
+  \coordinate (malmodouble) at ($(architect.west |- minecraft_text.south west) + (builder.north east)$);
+  \coordinate (malmo) at ($0.5*(malmodouble)$);
+
+  \node[draw,rectangle,minimum width=6.cm,minimum height=3.5cm] (malmo_node) at (malmo) {};
+
+  \node[draw,rectangle,fill=LemonChiffon1,above=4.7cm of malmo,minimum width=5cm,minimum height = 2cm,align=center] (malmo_interface) {\Large Malmö Interface\\ \small nœud ROS};
+
+  \draw[<-]  ([xshift=-.5cm]malmo_interface.south-|builder.north) -- ([xshift=-.5cm]builder.north) node[above,sloped,midway] {Stats};
+  \draw[->,alt=<5>{red,ultra thick}] ([xshift=0cm]malmo_interface.south-|builder.north) -- ([xshift=.0cm]builder.north) node[above,sloped,midway] {Commands};
+  \draw[->] ([xshift=.5cm]malmo_interface.south-|builder.north) -- ([xshift=.5cm]builder.north) node[above,sloped,midway] {Chat};
+
+  \draw[<-,alt=<2>{red,ultra thick}] ([xshift=.25cm]malmo_interface.south-|architect.north) -- ([xshift=.25cm]architect.north) node[above,sloped,midway] {Chat};
+  \draw[<-] ([xshift=-.25cm]malmo_interface.south-|architect.north) -- ([xshift=-.25cm]architect.north) node[above,sloped,midway] {Stats};
+
+
+  \node[draw,rectangle,fill=LightBlue1,above left=2.cm of malmo_interface,minimum width=4cm,minimum height= 2cm,align=center] (dialog_manager) {\Large Dialog Manager\\ \small nœud ROS};
+
+
+  \draw[->,alt=<2>{red,ultra thick}] (malmo_interface.190) -| (dialog_manager.250) node[above,sloped,near start] {Chat from Architect};
+
+  \draw[<-] (malmo_interface.170) -| (dialog_manager.290) node[above,sloped,near start] {Chat to Builder};
+
+
+  \node[draw,rectangle,fill=Tan1,above right=2.cm of malmo_interface,minimum width=4cm,minimum height= 2cm,align=center] (reasoner) {\Large Planner\\ \small nœud ROS};
+
+
+  \draw[<-,alt=<4>{red,ultra thick}] (malmo_interface.10) -| (reasoner.230) node[above,sloped,near start] {Actions};
+
+  \draw[->] (malmo_interface.40) |- (reasoner.205) node[above,sloped,near end] {World State};
+
+
+  \draw[->,alt=<3>{red,ultra thick}] ([shift={(0cm,.8cm)}]dialog_manager.east) -- ([shift={(0cm,.8cm)}]reasoner.west) node[above,sloped,near end] {Filtered Tasks};
+  \draw[<-] ([shift={(0cm,0.2cm)}]dialog_manager.east) -- ([shift={(0cm,0.2cm)}]reasoner.west) node[above,yshift=-0.2em,sloped,near end] {World Updates};
+  \draw[<-] ([shift={(0cm,-0.4cm)}]dialog_manager.east) -- ([shift={(0cm,-0.4cm)}]reasoner.west) node[above,sloped,near end] {Common Errors};
+\end{tikzpicture}
+}
+
+
   \vfill
   \pause
   Architect: ``Put a blue block on your left''
 
   \vfill
+  \small
   \begin{description}[<+(1)->]
     \item[Filtered Task] possible tâche complexe (\texttt{PUT(left,blue)})
-    \item[Task] liste de tâches (\texttt{TURN(LEFT)}, \texttt{PUT(blue)}, \texttt{TURN(RIGHT)}) \only<.(3)->{\alert{\textleftarrow} \stepcounter{beamerpauses}}
+    \item[\only<.(3)->{\alert{\textrightarrow} \stepcounter{beamerpauses}}Task] liste de tâches (\texttt{TURN(LEFT)}, \texttt{PUT(blue)}, \texttt{TURN(RIGHT)})
     \item[Commands] Action faite par Builder (\texttt{turn}, \texttt{setPitch}, \texttt{place})
   \end{description}
 
@@ -275,18 +324,22 @@ Et si le Builder était un robot?\pause
   \pause
   Planificateur doit :
   \begin{itemize}[<+(1)->]
-    \item[\only<7->{\checkmark}] avoir une bibliothèque de tâches
-    \item[\only<7->{\checkmark}] avoir accès au raisonnement
+    \item[\only<8->{\checkmark}] avoir une bibliothèque de tâches
+    \item[\only<8->{\checkmark}] avoir accès au raisonnement
     \item[] avoir une bibliothèque de conditions et tâches associées (pré et post tâches)
     \item[] tester si action est faisable
+    \item[\only<8->{\checkmark}] envoyer des m-à-j des actions au Dialog Manager
+    \item[\only<8->{\checkmark}] envoyer erreur au Dialog Manager sinon
   \end{itemize}
 \end{frame}
 
 
 \section{Tâches réalisées}
 \begin{frame}{Tâches réalisées}
+  \pause
   \vfill
 Point de départ: Stage Ismail (\texttt{.json})
+  \pause
   \vfill
 \begin{itemize}[<+(1)->]
   \item MàJ Malmö pour fonctionner sur Ubuntu 20.04
@@ -299,7 +352,7 @@ Point de départ: Stage Ismail (\texttt{.json})
 \end{itemize}
 \end{frame}
 
-\section{Petit exemple}
+\section{Petite démo}
 
 \section{Conclusion}
 
