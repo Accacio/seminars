@@ -24,7 +24,7 @@
 {Discuter:}
 
 \subtitle
-{Ontologies + NLP + Minecraft = ?}
+{Ontologies + NLP + Minecraft = \raisebox{-.5em}{\includegraphics[width=1.5em]{thinking.png}}}
 
 \author[Rafael Accácio Nogueira] % (optional, use only with lots of authors)
 {Rafael Accácio NOGUEIRA\\
@@ -217,6 +217,7 @@ Et si le Builder était un robot?\pause
 \begin{frame}{Flux de données}
 
   \vfill
+  \vfill
   \begin{itemize}
     \item Malmö API \only<2->{(\texttt{json})}
           \begin{itemize}[<.(2)->]
@@ -228,8 +229,9 @@ Et si le Builder était un robot?\pause
     \item ROS
           \begin{itemize}[<.(3)->]
             \item Chat (\texttt{StampedString})
-            \item Filtered Tasks (\texttt{StampedString})
-            \item Tasks (\texttt{StampedString})
+            \item (Filtered) Tasks (\texttt{StampedString})
+            \item Common Errors (\texttt{StampedString})
+            \item World Updates (\texttt{StampedString})
             \item Positions agents/blocs \textrightarrow\ Overworld (\texttt{*Poses})
           \end{itemize}
     \item Ontologenius
@@ -324,12 +326,12 @@ Et si le Builder était un robot?\pause
   \pause
   Planificateur doit :
   \begin{itemize}[<+(1)->]
-    \item[\only<8->{\checkmark}] avoir une bibliothèque de tâches
-    \item[\only<8->{\checkmark}] avoir accès au raisonnement
+    \item[\only<9->{\checkmark}] avoir une bibliothèque de tâches
+    \item[\only<9->{-- }] avoir accès au raisonnement
     \item[] avoir une bibliothèque de conditions et tâches associées (pré et post tâches)
     \item[] tester si action est faisable
-    \item[\only<8->{\checkmark}] envoyer des m-à-j des actions au Dialog Manager
-    \item[\only<8->{\checkmark}] envoyer erreur au Dialog Manager sinon
+    \item[\only<9->{\checkmark}] envoyer des m-à-j des actions au Dialog Manager
+    \item[\only<9->{\checkmark}] envoyer erreur au Dialog Manager sinon
   \end{itemize}
 \end{frame}
 
@@ -338,7 +340,7 @@ Et si le Builder était un robot?\pause
 \begin{frame}{Tâches réalisées}
   \pause
   \vfill
-Point de départ: Stage Ismail (\texttt{.json})
+Point de départ: Stage Ismail (Enregistrement d'états en \texttt{.json})
   \pause
   \vfill
 \begin{itemize}[<+(1)->]
@@ -346,10 +348,14 @@ Point de départ: Stage Ismail (\texttt{.json})
   \item Image docker
   \item Reproduction scénario de collecte (Malmö pur)
   \item Création de l'interface Malmö/ROS/Overworld
-  \item Mock-up du «Dialog Manager» (regex FTW!)
-  \item Mock-up du Planner
-  \item Documentation
+  \item Mock-up du «Dialog Manager» \tikzmark{a}
+  \item Mock-up du Planner \tikzmark{ab}
 \end{itemize}
+
+\onslide<9->{\begin{tikzpicture}[overlay, remember picture,decoration={brace,amplitude=2pt}]
+    \draw[decorate,thick] (a.north east) -- (a.north east |- ab.south east) node[midway, right=0.1cm,text=black,text width = 2in] {regex FTW!};
+    \end{tikzpicture}
+  }
 \end{frame}
 
 \section{Petite démo}
@@ -357,8 +363,23 @@ Point de départ: Stage Ismail (\texttt{.json})
 \section{Conclusion}
 
 \begin{frame}{Conclusion}
-  \begin{itemize}
-    \item<+-> Blockworld reasoner
+  \begin{itemize}[<+->]
+    \item Preuve de concept
+          \begin{itemize}[<+->]
+            \item Interaction avec Minecraft utilisant ROS
+            \item Intégration partiel des ontologies
+            \item Tâches extensibles par autres tâches
+            \item Plateforme pour expérimentation avec dialogue et ontologies
+          \end{itemize}
+  \end{itemize}
+
+  \begin{itemize}[<+->]
+    \item Dans l'horizon
+          \begin{itemize}[<+->]
+            \item Parser plus intelligent avec LLM
+            \item ajouter réactivité aux changements d'état
+            \item Planification des mouvements (point d'approche etc)
+          \end{itemize}
   \end{itemize}
 \end{frame}
 
