@@ -58,7 +58,7 @@
 }
 }
 
-\graphicspath{{./img/}{./img/logos/}}
+\graphicspath{{./img/}{./img/logos/}{../img/}{../img/logos/}}
 \beamertemplatenavigationsymbolsempty
 % \logo{\includegraphics[width=3cm]{neocampus-logo.png}}
 \logo{\includegraphics[width=3cm]{autocampus-logo.png}}
