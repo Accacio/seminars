@@ -36,9 +36,9 @@
   \begin{minipage}{.5\textwidth}
     \centering
     \vspace{10pt}
-    \includegraphics[width=1.5cm]{qrPresentation.png}
-    % qrencode -o ./img/qrPresentation.png https://github.com/Accacio/seminars/raw/main/2023-ECL_Ampere/presentation/presentation.pdf
+    \qrcode[height=1.5cm]{https://github.com/Accacio/seminars/raw/main/2023-ECL_Ampere/presentation/presentation.pdf}
 
+    \vspace{5pt}
     \href{https://bit.ly/43h2jms}{https://bit.ly/43h2jms}
   \end{minipage}
   % \begin{minipage}{.3\textwidth}
@@ -2377,7 +2377,9 @@ let \p1=(\tikztostart), \p2=(\tikztotarget), \n1={veclen(\y2-\y1,\x2-\x1)} in
     Repository
     \href{https://github.com/Accacio/thesis}{https://github.com/Accacio/thesis}
 
-    \includegraphics[width=2cm]{qrRepo.png}
+    % \includegraphics[width=2cm]{qrRepo.png}
+    \vspace{5pt}
+    {\qrcode[link, height=1.5cm]{https://github.com/Accacio/thesis}}
   \end{minipage}
   \hfill
   \begin{minipage}[t]{.5\linewidth}
@@ -2386,7 +2388,9 @@ let \p1=(\tikztostart), \p2=(\tikztotarget), \n1={veclen(\y2-\y1,\x2-\x1)} in
     Contact\\
     \href{mailto:rafael.accacio.nogueira@gmail.com?subject=Seminar Lyon 2023}{rafael.accacio.nogueira@gmail.com}
 
-    \includegraphics[width=2cm]{qrContact.png}
+    % \includegraphics[width=2cm]{qrContact.png}
+    \vspace{5pt}
+    {\qrcode[link, height=1.5cm]{mailto:rafael.accacio.nogueira@gmail.com?subject=Seminar\ Lyon\ 2023}}
   \end{minipage}
   \ifwebcast{\tikz{\draw[fill=pink,draw=pink] (1.5,0) circle [radius=1.5cm]}}%
   \fi
