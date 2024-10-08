@@ -7,6 +7,7 @@
 
 \RequirePackage[x11names]{xcolor}
 \RequirePackage{tikz}
+\RequirePackage{qrcode}
 \usetikzlibrary{babel}
 
 \RequirePackage{lipsum}
