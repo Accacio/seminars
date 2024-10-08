@@ -1,0 +1,17 @@
+.DS_Store
+.idea
+*.log
+tmp/
+
+
+*.aux
+*.bcf
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.upa
+*.auctex-auto/
+*.~lock*
