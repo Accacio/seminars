@@ -1,0 +1,256 @@
+% Philippe Lenca
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+\ProvidesPackageRCS $Header: /usr/share/texmf/tex/latex/philippelenca/themes-imt-atlantique/theme/inner/beamerinnerthemeIMTatlantique.sty,v 1.0 2017/03/05 12:48:30 lenca $
+
+\mode<presentation>
+
+\usepackage{wasysym} % for triangle in \item
+
+
+\newcommand{\logo@titre}{%
+	\begin{tikzpicture}[remember picture,overlay]%
+	\pgfdeclareimage[interpolate=true, width=120pt]{imtatlantiquelogo}{inner/imtatlantiquelogo};
+	\node at (-0.25,-1.4) {\pgfuseimage{imtatlantiquelogo}};
+	\end{tikzpicture}
+}
+
+\newcommand{\logo@pagetitre}{%
+	\begin{tikzpicture}[remember picture,overlay]%
+	\pgfdeclareimage[interpolate=true, width=120pt]{imtatlantiquelogo}{inner/imtatlantiquelogo};
+	\node[xshift=0.2cm,yshift=-0.00cm,anchor=north west] at (current page.north west) {\pgfuseimage{imtatlantiquelogo}};
+	\end{tikzpicture}
+}
+
+\newcommand{\logo@pagepart}{%
+	\begin{tikzpicture}[remember picture,overlay]%
+	\pgfdeclareimage[interpolate=true, width=80pt]{imtatlantiquelogo}{inner/imtatlantiquelogo};
+	\node[xshift=0.2cm,yshift=-.00cm,anchor=south west] at (current page.south west) {\pgfuseimage{imtatlantiquelogo}};
+	\end{tikzpicture}
+}
+
+\newcommand{\logo@pagetableofcontents}{%
+	\begin{tikzpicture}[remember picture,overlay]%
+	\pgfdeclareimage[interpolate=true, width=80pt]{imtatlantiquelogo}{inner/IMT_Atlantique_logo_RVB_Negatif_Baseline_300x204};
+	\node[xshift=0.2cm,yshift=-.00cm,anchor=south west] at (current page.south west) {\pgfuseimage{imtatlantiquelogo}};
+	\end{tikzpicture}
+}
+				
+%% #############################################################################
+%% Template page de titre default
+%%	
+\def\titlepage{\usebeamertemplate*{title page}}
+%% Template page de titre default
+%% -----------------------------------------------------------------------------------
+
+
+
+%% #############################################################################
+%% Template page de titre
+%%
+\defbeamertemplate*{title page}{IMTAtlantique}[1][]
+{
+\begin{tikzpicture}[remember picture,overlay, anchor = west]
+%\draw (0,0) grid (12,-9.0);
+
+\fill[bleufonceimtatlantique] (-0.4,-9.4) -- (8.5,-9.4) -- (3.5,-3.5) -- (-0.4,-7.5) -- cycle;
+\fill[vertimtatlantique] (3.5,-3.5) -- (5.5,-5.9) -- (11.5,+0.4) -- (7.5, +0.4) -- cycle;
+\fill[bleuclairimtatlantique] (5.5,-5.9) -- (8.5,-9.4) -- (12.5,-.4) -- (12.5, +0.4) -- (11.5,+0.4) -- cycle;
+\fill[blancimtatlantique] (-0.4,-7.5) -- (3.5,-3.5)  -- (7.5, +0.4) -- (-0.4, +0.4) -- cycle;
+
+\logo@titre
+
+%\draw[thick,red, decorate,decoration={snake}]
+%(current page.north west) rectangle (current page.south east);
+
+\node[shift={(+4.8 cm,-4.5cm)}]  at (current page.north west) {
+	\begin{tabular}{l}
+	\ifx\inserttitle\empty\else
+		\usebeamerfont{title}{\color{blancimtatlantique}\inserttitle} \fi\\
+	\ifx\insertsubtitle\empty\else
+		\usebeamerfont{subtitle}{\usebeamercolor[blancimtatlantique]{subtitle}\insertsubtitle} \fi\\
+	\ifx\insertauthor\empty\else
+		\usebeamerfont{author}{\usebeamercolor[blancimtatlantique]{author}\insertauthor} \fi\\		
+	\ifx\insertinstitute\empty\else		
+		\usebeamerfont{institute}{\usebeamercolor[blancimtatlantique]{institute}\insertinstitute} \fi\\
+	\ifx\insertdate\empty\else				
+		\usebeamerfont{date}{\usebeamercolor[blancimtatlantique]{date}\insertdate}\fi
+	\end{tabular}
+};
+\end{tikzpicture}
+}	
+
+%% Template page de titre
+%% -----------------------------------------------------------------------------------
+
+\usepackage{etoolbox}
+\makeatletter
+% Insert [short title] for \section in ToC
+%\patchcmd{\beamer@section}{{#2}{\the\c@page}}{{#1}{\the\c@page}}{}{}
+% Insert [short title] for \section in Navigation
+\patchcmd{\beamer@section}{{\the\c@section}{\secname}}{{\the\c@section}{#1}}{}{}
+% Insert [short title] for \subsection in ToC
+\patchcmd{\beamer@subsection}{{#2}{\the\c@page}}{{#1}{\the\c@page}}{}{}
+% Insert [short title] for \subsection  in Navigation
+\patchcmd{\beamer@subsection}{{\the\c@subsection}{#2}}{{\the\c@subsection}{#1}}{}{}
+\makeatother
+
+
+\newcommand{\titlepageimtatlantique}{
+		\setbeamertemplate{background}{%
+			%\tikz\node[opacity=0.3] at (current page.center) %{\includegraphics[height=\paperheight]{unspecified}};
+			\begin{tikzpicture}[remember picture,overlay]
+
+			  \def\angle{50}
+			  \def\largeurvert{.25\paperheight}
+			  \def\hauteurbleu{.3\paperheight}
+			  \def\largeurbleu{.6\paperwidth}
+			  \coordinate (bluefonce_bas_droit) at (\largeurbleu,-10 |- current page.south);
+			  \coordinate (bluefonce_bas_gauche) at (current page.south west);
+			  % \coordinate (bluefonce_haut_droit) at (current page.south west);
+			  \coordinate (bluefonce_haut_gauche) at ($ (current page.south west) + (0,\hauteurbleu)$);
+			  \coordinate (blueclair_bas_gauche) at (bluefonce_bas_droit);
+
+
+			  \path[blue,name path=blue120] (bluefonce_bas_droit |- current page.south) -- +({180-\angle}:15);
+			  \path[green,name path=blue30] (bluefonce_haut_gauche -| current page.west) -- +({180-\angle-90}:15);
+			  \node[name intersections={of=blue120 and blue30, by=bluefonce_haut_droit}] {};
+			 \coordinate (vert) at ($(bluefonce_haut_droit) +(-{\angle}:\largeurvert)$);
+			  \path[name path=vert90] (vert) -- +({180-\angle-90}:15);
+			  \path[name path=top_horz] (current page.north west) -- (current page.north east);
+
+			  \node[name intersections={of=top_horz and blue30, by=vert_haut_gauche}] {};
+			  \node[name intersections={of=top_horz and vert90, by=vert_haut_droit}] {};
+
+			\fill[bleufonceimtatlantique] (bluefonce_bas_gauche) -- (bluefonce_bas_droit |- current page.south)  -- (bluefonce_haut_droit) -- (bluefonce_haut_gauche) -- cycle;
+			\fill[vertimtatlantique] (bluefonce_haut_droit) -- (vert) -- (vert_haut_droit) -- (vert_haut_gauche) -- cycle;
+			\fill[bleuclairimtatlantique] (vert)  -- (bluefonce_bas_droit) -- (current page.south east) -- (current page.north east) -- (vert_haut_droit) -- cycle;
+
+			\pgfdeclareimage[interpolate=true, width=100pt]{imtatlantiquelogo}{inner/imtatlantiquelogo};
+			\node[xshift=.3cm,yshift=-.3cm,anchor=north west] at (current page.north west) {\pgfuseimage{imtatlantiquelogo}};
+			
+			\node[anchor=east,shift={(-.05\paperwidth ,-.5cm)}]  at (current page.east) {
+				\begin{tabular}{l}
+					\ifx\inserttitle\empty\else
+					\usebeamerfont{title}{\color{blancimtatlantique}\inserttitle} \fi\\
+					\ifx\insertsubtitle\empty\else
+					\usebeamerfont{subtitle}{\usebeamercolor[blancimtatlantique]{subtitle}\insertsubtitle} \fi\\
+					\ifx\insertauthor\empty\else
+					\usebeamerfont{author}{\usebeamercolor[blancimtatlantique]{author}\insertauthor} \fi\\		
+					\ifx\insertinstitute\empty\else		
+					\usebeamerfont{institute}{\usebeamercolor[blancimtatlantique]{institute}\insertinstitute} \fi\\
+					\ifx\insertdate\empty\else				
+					\usebeamerfont{date}{\usebeamercolor[blancimtatlantique]{date}\insertdate}\fi
+				\end{tabular}
+			};
+
+			\end{tikzpicture}
+		}
+		\frame[plain]{
+%			\thispagestyle{empty}
+%			\begin{minipage}[c]{0.36\linewidth}%[hauteur][position]{largeur}
+%			\end{minipage}
+%			\hfill
+%			\begin{minipage}[c]{0.64\linewidth}%[hauteur][position]{largeur}
+%			\vspace{2.8cm}
+%	\ifx\inserttitle\empty\else
+%	\usebeamerfont{title}{\color{blancimtatlantique}\inserttitle} \fi\\
+%	\ifx\insertsubtitle\empty\else
+%	\usebeamerfont{subtitle}{\usebeamercolor[blancimtatlantique]{subtitle}\insertsubtitle} \fi\\
+%	\ifx\insertauthor\empty\else
+%	\usebeamerfont{author}{\usebeamercolor[blancimtatlantique]{author}\insertauthor} \fi\\		
+%	\ifx\insertinstitute\empty\else		
+%	\usebeamerfont{institute}{\usebeamercolor[blancimtatlantique]{institute}\insertinstitute} \fi\\
+%	\ifx\insertdate\empty\else				
+%	\usebeamerfont{date}{\usebeamercolor[blancimtatlantique]{date}\insertdate}\fi
+%			\end{minipage}
+		}
+		\setbeamertemplate{background}{}
+	}
+
+\setbeamertemplate{section in toc}{\color{vertimtatlantique}\inserttocsectionnumber.~\inserttocsection}
+\setbeamertemplate{subsection in toc}[subsections numbered]
+	
+\newcommand{\tableofcontentsimtatlantique}{
+	\setbeamertemplate{background}{%
+		%\tikz\node[opacity=0.3] at (current page.center) %{\includegraphics[height=\paperheight]{unspecified}};
+		\begin{tikzpicture}[remember picture,overlay, anchor = west]
+		%\draw (0,0) grid (12,-9.0);
+		\fill[grisimtatlantique] (-0.4,-10) -- (8.5,-10) -- (3.5,-3.5) -- (-0.4,-7.5) -- cycle;
+		\fill[vertimtatlantique] (-0.4,-7.5) -- (3.5,-3.5)  -- (7.5, +0.3) -- (-0.4, +0.3) -- cycle;
+		\node at (1,-1) {\usebeamerfont{author} \usebeamercolor[white]{subtitle}\bfseries\sommaire};
+		\pgfdeclareimage[interpolate=true, width=80pt]{sfimtatlantiquelogo}{inner/logosansfondimtatlantique};
+		\node[xshift=1cm,yshift=-.00cm,anchor=south west] at (current page.south west) {\pgfuseimage{sfimtatlantiquelogo}};
+		
+		
+		\end{tikzpicture}
+	}
+	\frame[plain]{
+%		\thispagestyle{empty}
+		 \vfill
+		\hfill
+		\begin{minipage}{0.45\linewidth}%[hauteur][position]{largeur}
+			
+ 			\tableofcontents[hideallsubsections]%section in toc]%,
+		\end{minipage}
+	
+}
+	\setbeamertemplate{background}{}
+}
+
+
+
+
+%\long\def\boxit#1#2{\vbox{\hrule
+%	\hbox{\vrule\kern#2pt%
+%		\vbox{\kern#2pt\hbox{#1}\kern#2pt}%
+%	\kern#2pt\vrule}\hrule}}
+	
+
+
+%% #############################################################################
+%% Template page of notes
+%%
+%% Option 1
+% \setbeameroption{show notes on second screen=bottom}
+
+% \AtBeginNote{~\\\dotfill{}\\\dotfill{}\\\dotfill{}\\
+% 	\dotfill{}\\\dotfill{}\\\dotfill{}\\\dotfill{}\\
+% 	\dotfill{}\\\dotfill{}\\\dotfill{}\\\dotfill{}\\
+% 	\dotfill{}\\\dotfill{}\\\dotfill{}\\\dotfill{}\\
+% 	\dotfill{}\\\dotfill{}\\\dotfill{}\\\dotfill{}\\
+% 	\dotfill{}\\\dotfill{}\\\dotfill{}\\
+% }
+%% Option 2
+%  \setbeamertemplate{note page}[plain]
+%% Template page of notes
+%% -----------------------------------------------------------------------------
+
+
+% 
+\newcommand*\itemizetriangleright{\textcolor{vertimtatlantique}{%
+		\ensuremath{\blacktriangleright}}}
+
+%\usepackage{MnSymbol}
+\useitemizeitemtemplate{%
+    \raise.5ex\hbox{\color{vertimtatlantique}\itemizetriangleright}%$\RHD$}%    
+}
+
+\usesubitemizeitemtemplate{%
+    \raise.5ex\hbox{\color{vertimtatlantique}$\bullet$}%
+}
+\usesubsubitemizeitemtemplate{%
+    \tiny\raise.5ex\hbox{\color{vertimtatlantique}$-$}%
+}
+
+%\setbeamertemplate{itemize item}[square][3pt]
+
+
+\mode
+<all>
